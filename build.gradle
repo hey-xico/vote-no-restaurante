@@ -6,12 +6,16 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.0'
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: 'cobertura'
+apply plugin: 'com.github.kt3k.coveralls'
+
 
 jar {
 	baseName = 'vote-no-restaurante'
@@ -26,7 +30,8 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-actuator')
+
+    compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-devtools')
 	compile('org.springframework.boot:spring-boot-starter-freemarker')
