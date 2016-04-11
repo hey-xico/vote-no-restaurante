@@ -31,7 +31,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-devtools')
 	compile('org.springframework.boot:spring-boot-starter-freemarker')
 	compile('org.springframework.boot:spring-boot-starter-mail')
-	provided('org.projectlombok:lombok:1.16.6')
+	compile('org.projectlombok:lombok:1.16.6')
 	runtime('org.hsqldb:hsqldb')
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
