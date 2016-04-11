@@ -17,6 +17,8 @@ import static java.util.stream.Collectors.toSet;
 public class ManageRestaurant {
 
     public Set<RestaurantPair> getRestaurantPairs(List<Restaurant> restaurants) {
+        if (restaurants == null || restaurants.isEmpty())
+            throw new IllegalArgumentException("restaurants should not be null or empty");
         return restaurants.stream().flatMap(
                         i -> restaurants.stream()
                                 .filter(j -> !j.equals(i))

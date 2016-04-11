@@ -2,7 +2,6 @@ package br.com.chico.votenorestaurante.bo;
 
 import br.com.chico.votenorestaurante.entity.Restaurant;
 import br.com.chico.votenorestaurante.model.RestaurantPair;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,8 +10,9 @@ import java.util.List;
 import java.util.Set;
 
 import static java.util.Arrays.asList;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author Francisco Almeida
@@ -78,8 +78,8 @@ public class ManageRestaurantTest {
         assertThat(result, not(hasItem(reversePair)));
     }
 
-    @Test(expected = InvalidArgumentException.class)
-    public void test_getRestaurantPairs_thownErrorWhenListIsNull() {
+    @Test(expected = IllegalArgumentException.class)
+    public void test_getRestaurantPairs_thownErrorWhenListIsNullOrEmpty() {
         result = this.target.getRestaurantPairs(null);
     }
 }
