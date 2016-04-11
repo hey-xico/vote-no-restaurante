@@ -4,7 +4,4 @@ machine:
       oraclejdk8
 test:
   override:
-    - ./gradlew build
-  post:
-    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
-    - cp build/test-results/*.xml $CIRCLE_TEST_REPORTS/junit/ 
+    - ./gradlew test
