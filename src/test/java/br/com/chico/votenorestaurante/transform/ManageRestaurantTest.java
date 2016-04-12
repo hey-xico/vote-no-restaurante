@@ -1,8 +1,7 @@
-package br.com.chico.votenorestaurante.bo;
+package br.com.chico.votenorestaurante.transform;
 
 import br.com.chico.votenorestaurante.model.domain.RestaurantPair;
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
-import br.com.chico.votenorestaurante.transform.ManageRestaurant;
 import org.junit.Before;
 import org.junit.Test;
 
