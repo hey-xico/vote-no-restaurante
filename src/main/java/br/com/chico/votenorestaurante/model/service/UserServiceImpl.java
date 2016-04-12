@@ -3,6 +3,7 @@ package br.com.chico.votenorestaurante.model.service;
 import br.com.chico.votenorestaurante.model.entity.User;
 import br.com.chico.votenorestaurante.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,12 +27,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-        return null;
+        validate(user, u -> u == null, "You are trying to save a null user");
+        return repo.save(user);
     }
 
     @Override
     public void remove(User user) {
-
+        if (this.findOne(user.getId()) == null) {
+            throw new EmptyResultDataAccessException(String.format("No %s entity with id %s exists!",
+                    user.getClass().getName(), user.getId()), 1);
+        }
+        repo.delete(user);
     }
 
     @Override

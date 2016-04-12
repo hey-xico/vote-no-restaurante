@@ -7,12 +7,14 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.HashSet;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.times;
 
 /**
  * @author Francisco Almeida on 12/04/2016.
@@ -22,6 +24,8 @@ public class UserServiceImplTest {
     private final static Long USER_ID = 1L;
 
     private UserServiceImpl target;
+
+    private User userFixture = new User(USER_ID, "Teste", "teste@teste.com", new HashSet<>());
 
     protected @Mock UserRepository mockUserRepository;
 
@@ -54,7 +58,47 @@ public class UserServiceImplTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void test_findOne_failedDataSearch() {
-        User result = target.findOne(null);
+        target.findOne(null);
+    }
+
+    @Test
+    public void test_save_success() {
+        // GIVEN
+        Mockito.when(mockUserRepository.save(this.userFixture))
+                .thenReturn(this.userFixture);
+        // WHEN
+        User result = target.save(this.userFixture);
+
+        // THEN
+        Mockito.verify(mockUserRepository).save(this.userFixture);
+
+        assertNotNull(result);
+        assertThat(result.getId(), equalTo(1L));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_save_failedDataSearch() {
+        target.save(null);
+    }
+
+    @Test
+    public void test_delete_success() {
+        // GIVEN
+        Mockito.when(mockUserRepository.findOne(Mockito.anyLong()))
+                .thenReturn(this.userFixture);
+
+        // WHEN
+        target.remove(this.userFixture);
+
+        // THEN
+        Mockito.verify(mockUserRepository, times(1)).delete(this.userFixture);
+
+    }
+
+    @Test(expected = EmptyResultDataAccessException.class)
+    public void test_delete_failedWhenPassAInvalidUser() {
+        // WHEN
+        target.remove(this.userFixture);
     }
 
 }
