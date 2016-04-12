@@ -1,4 +1,4 @@
-package br.com.chico.votenorestaurante.entity;
+package br.com.chico.votenorestaurante.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,11 +16,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "USER_VOTE")
 public class UserVote {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JoinColumn(name = "USER_VOTE_ID")
     private long id;
-    @OneToOne
-    private Restaurant restaurant;
-    @OneToMany
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_ID")
     private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "RESTAURANT_ID")
+    private Restaurant restaurant;
+
+    private long total;
 }

@@ -7,15 +7,11 @@ buildscript {
 	}
 	dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath 'net.saliman:gradle-cobertura-plugin:2.0.0'
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.0'
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
-apply plugin: 'cobertura'
-apply plugin: 'com.github.kt3k.coveralls'
 
 
 jar {
@@ -38,8 +34,10 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-freemarker')
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	compile('org.projectlombok:lombok:1.16.6')
-	runtime('org.hsqldb:hsqldb')
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	compile('com.h2database:h2:1.4.191')
+	testCompile('com.github.springtestdbunit:spring-test-dbunit:1.2.1')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile('org.dbunit:dbunit:2.5.1')
 }
 
 task wrapper(type: Wrapper) {

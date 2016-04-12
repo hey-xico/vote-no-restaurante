@@ -1,7 +1,7 @@
-package br.com.chico.votenorestaurante.bo;
+package br.com.chico.votenorestaurante.transform;
 
-import br.com.chico.votenorestaurante.entity.Restaurant;
-import br.com.chico.votenorestaurante.model.RestaurantPair;
+import br.com.chico.votenorestaurante.model.domain.RestaurantPair;
+import br.com.chico.votenorestaurante.model.entity.Restaurant;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

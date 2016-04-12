@@ -1,7 +1,8 @@
 package br.com.chico.votenorestaurante.bo;
 
-import br.com.chico.votenorestaurante.entity.Restaurant;
-import br.com.chico.votenorestaurante.model.RestaurantPair;
+import br.com.chico.votenorestaurante.model.domain.RestaurantPair;
+import br.com.chico.votenorestaurante.model.entity.Restaurant;
+import br.com.chico.votenorestaurante.transform.ManageRestaurant;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,18 +30,18 @@ public class ManageRestaurantTest {
         this.result = new HashSet<>();
         this.target = new ManageRestaurant();
         this.restaurants = asList(
-                new Restaurant(1L, "La Tambouille"),
-                new Restaurant(2L, "Varanda Grill"),
-                new Restaurant(3L, "Barbacoa"),
-                new Restaurant(4L, "Era uma vez um Chalezinho"),
-                new Restaurant(5L, "Fasano"));
+                new Restaurant(1L, "La Tambouille", new HashSet<>()),
+                new Restaurant(2L, "Varanda Grill", new HashSet<>()),
+                new Restaurant(3L, "Barbacoa", new HashSet<>()),
+                new Restaurant(4L, "Era uma vez um Chalezinho", new HashSet<>()),
+                new Restaurant(5L, "Fasano", new HashSet<>()));
     }
 
     @Test
     public void test_getRestaurantPairs_success() {
 
         //Given
-        RestaurantPair restaurantPair = new RestaurantPair(new Restaurant(1L, "La Tambouille"), new Restaurant(2L, "Varanda Grill"));
+        RestaurantPair restaurantPair = new RestaurantPair(new Restaurant(1L, "La Tambouille", new HashSet<>()), new Restaurant(2L, "Varanda Grill", new HashSet<>()));
 
         //When
         result = this.target.getRestaurantPairs(restaurants);
@@ -53,7 +54,7 @@ public class ManageRestaurantTest {
     public void test_getRestaurantPairs_notReturnEqualPair() {
 
         //Given
-        RestaurantPair restaurantPair = new RestaurantPair(new Restaurant(1L, "La Tambouille"), new Restaurant(1L, "La Tambouille"));
+        RestaurantPair restaurantPair = new RestaurantPair(new Restaurant(1L, "La Tambouille", new HashSet<>()), new Restaurant(1L, "La Tambouille", new HashSet<>()));
 
         //When
         result = this.target.getRestaurantPairs(restaurants);
@@ -66,8 +67,8 @@ public class ManageRestaurantTest {
     public void test_getRestaurantPairs_notReturnReversePair() {
 
         //Given
-        RestaurantPair restaurantPair = new RestaurantPair(new Restaurant(1L, "La Tambouille"), new Restaurant(2L, "Varanda Grill"));
-        RestaurantPair reversePair = new RestaurantPair(new Restaurant(2L, "Varanda Grill"), new Restaurant(1L, "La Tambouille"));
+        RestaurantPair restaurantPair = new RestaurantPair(new Restaurant(1L, "La Tambouille", new HashSet<>()), new Restaurant(2L, "Varanda Grill", new HashSet<>()));
+        RestaurantPair reversePair = new RestaurantPair(new Restaurant(2L, "Varanda Grill", new HashSet<>()), new Restaurant(1L, "La Tambouille", new HashSet<>()));
 
         //When
         result = this.target.getRestaurantPairs(restaurants);

@@ -1,8 +1,10 @@
-package br.com.chico.votenorestaurante.model;
+package br.com.chico.votenorestaurante.model.domain;
 
-import br.com.chico.votenorestaurante.entity.Restaurant;
+
+import br.com.chico.votenorestaurante.model.entity.Restaurant;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Component
 public class RestaurantPair {
     private Restaurant left;
