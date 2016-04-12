@@ -19,8 +19,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import java.util.List;
 
 import static com.github.springtestdbunit.annotation.DatabaseOperation.DELETE_ALL;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -44,7 +43,7 @@ public class RestaurantRepositoryIT {
     public void test_findAll_MustSucceed() {
         //Given
 
-        //When
+        //Whenx
         List<Restaurant> result = target.findAll();
 
         //Then
@@ -65,5 +64,29 @@ public class RestaurantRepositoryIT {
         assertThat(result, notNullValue());
         assertThat(result.getName(), equalTo("Vento Aragano"));
         assertThat(result.getId(), equalTo(6L));
+    }
+
+    @Test
+    public void test_delete_success() {
+        // GIVEN
+        Restaurant restaurantFixture = target.findOne(1L);
+
+        // WHEN
+        target.delete(restaurantFixture);
+        Restaurant result = target.findOne(1L);
+
+        // THEN
+        assertThat(result, nullValue());
+    }
+
+
+    @Test
+    public void test_findOne_success() {
+
+        // GIVEN
+
+        // WHEN
+
+        // THEN
     }
 }
