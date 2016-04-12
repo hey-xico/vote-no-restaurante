@@ -9,7 +9,9 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertNotNull;
@@ -77,7 +79,7 @@ public class UserServiceImplTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void test_save_failedDataSearch() {
+    public void test_save_failedDataInsert() {
         target.save(null);
     }
 
@@ -99,6 +101,30 @@ public class UserServiceImplTest {
     public void test_delete_failedWhenPassAInvalidUser() {
         // WHEN
         target.remove(this.userFixture);
+    }
+
+
+    @Test
+    public void test_findAll_success() {
+        //GIVEN
+        List<User> usersFixture =
+                Arrays.asList(
+                        new User(1L, "ABCS", "acbd@teste.com", new HashSet<>()),
+                        new User(2L, "BCDA", "bcda@teste.com", new HashSet<>()),
+                        new User(3L, "DCBA", "dcba@teste.com", new HashSet<>())
+                );
+
+        Mockito.when(mockUserRepository.findAll())
+                .thenReturn(usersFixture);
+
+        // WHEN
+        List<User> result = target.findAll();
+
+        //THEN
+        Mockito.verify(mockUserRepository, times(1)).findAll();
+
+        assertNotNull(result);
+        assertThat(result.get(0).getId(), equalTo(1L));
     }
 
 }

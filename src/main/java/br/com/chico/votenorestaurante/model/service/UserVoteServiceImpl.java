@@ -1,7 +1,7 @@
 package br.com.chico.votenorestaurante.model.service;
 
-import br.com.chico.votenorestaurante.model.entity.User;
-import br.com.chico.votenorestaurante.model.repository.UserRepository;
+import br.com.chico.votenorestaurante.model.entity.UserVote;
+import br.com.chico.votenorestaurante.model.repository.UserVoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -14,34 +14,40 @@ import java.util.function.Predicate;
  * @since 11/04/2016
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserVoteServiceImpl implements UserVoteService {
 
     @Autowired
-    private UserRepository repo;
+    private UserVoteRepository repo;
 
     @Override
-    public User findOne(Long id) {
+    public UserVote findOne(Long id) {
         validate(id, i -> i == null, "You are passing a invalid ID" + id);
         return this.repo.findOne(id);
     }
 
     @Override
-    public User save(User user) {
-        validate(user, u -> u == null, "You are trying to save a null user");
-        return repo.save(user);
+    public UserVote save(UserVote userVote) {
+        validate(
+                userVote,
+                u -> u == null || u.getUser() == null || u.getRestaurant() == null,
+                "You cannot persist a vote without a user or a restaurant");
+        return repo.save(userVote);
     }
 
     @Override
-    public void remove(User user) {
-        if (this.findOne(user.getId()) == null) {
+    public void remove(UserVote userVote) {
+
+        validate(userVote, u -> u == null, "You cannot persist a vote without a user or a restaurant");
+
+        if (this.findOne(userVote.getId()) == null) {
             throw new EmptyResultDataAccessException(String.format("No %s entity with id %s exists!",
-                    user.getClass().getName(), user.getId()), 1);
+                    userVote.getClass().getName(), userVote.getId()), 1);
         }
-        repo.delete(user);
+        repo.delete(userVote);
     }
 
     @Override
-    public List<User> findAll() {
+    public List<UserVote> findAll() {
         return this.repo.findAll();
     }
 
@@ -53,7 +59,7 @@ public class UserServiceImpl implements UserService {
     /**
      * For test reason!
      * */
-    public void setRepo(UserRepository repo) {
+    public void setRepo(UserVoteRepository repo) {
         this.repo = repo;
     }
 }
