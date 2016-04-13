@@ -19,14 +19,14 @@ public class UserVote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JoinColumn(name = "USER_VOTE_ID")
+    @Column(name = "USER_VOTE_ID")
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "RESTAURANT_ID")
     private Restaurant restaurant;
 

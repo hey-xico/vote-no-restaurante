@@ -1,7 +1,7 @@
 package br.com.chico.votenorestaurante.model.repository;
 
 import br.com.chico.votenorestaurante.VoteNoRestauranteApplication;
-import br.com.chico.votenorestaurante.model.entity.Restaurant;
+import br.com.chico.votenorestaurante.model.entity.User;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
@@ -16,6 +16,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 import static com.github.springtestdbunit.annotation.DatabaseOperation.DELETE_ALL;
@@ -31,50 +32,74 @@ import static org.junit.Assert.assertThat;
         TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = VoteNoRestauranteApplication.class)
-@DatabaseSetup(RestaurantRepositoryIT.DATASET)
-@DatabaseTearDown(type = DELETE_ALL, value = {RestaurantRepositoryIT.DATASET})
+@DatabaseSetup(UserRepositoryIT.DATASET)
+@DatabaseTearDown(type = DELETE_ALL, value = {UserRepositoryIT.DATASET})
 @DirtiesContext
-public class RestaurantRepositoryIT {
-    protected static final String DATASET = "classpath:datasets/it-restaurants.xml";
+public class UserRepositoryIT {
+    protected static final String DATASET = "classpath:datasets/it-users.xml";
 
     @Autowired
-    private RestaurantRepository target;
+    private UserRepository target;
 
     @Test
     public void test_findAll_MustSucceed() {
         //Given
 
         //When
-        List<Restaurant> result = target.findAll();
+        List<User> result = target.findAll();
 
         //Then
         assertThat(result, notNullValue());
-        assertThat(result.get(0).getName(), equalTo("BK"));
+        assertThat(result.get(0).getName(), equalTo("Frank Underwood"));
     }
 
 
     @Test
     public void test_save_MustSucceed() {
         //Given
-        Restaurant restaurantFixture = new Restaurant();
-        restaurantFixture.setName("Vento Aragano");
+        User UserFixture = new User();
+        UserFixture.setName("Francisco Almeida");
+        UserFixture.setEmail("fa@hu.com");
 
         //When
-        Restaurant result = target.save(restaurantFixture);
+        User result = target.save(UserFixture);
 
         assertThat(result, notNullValue());
-        assertThat(result.getName(), equalTo("Vento Aragano"));
-        assertThat(result.getId(), equalTo(6L));
+        assertThat(result.getName(), equalTo("Francisco Almeida"));
+        assertThat(result.getId(), equalTo(2L));
     }
+
+    @Test(expected = ConstraintViolationException.class)
+    public void test_save_errorSavingUserWithoutEmail() {
+        //Given
+        User UserFixture = new User();
+        UserFixture.setName("Francisco Almeida");
+
+        //When
+        User result = target.save(UserFixture);
+
+    }
+
+    @Test(expected = ConstraintViolationException.class)
+    public void test_save_errorSavingUserWithoutName() {
+        //Given
+        User UserFixture = new User();
+        UserFixture.setEmail("fu@hue.com");
+
+        //When
+        User result = target.save(UserFixture);
+
+    }
+
 
     @Test
     public void test_delete_success() {
         // GIVEN
-        Restaurant restaurantFixture = target.findOne(1L);
+        User UserFixture = target.findOne(1L);
 
         // WHEN
-        target.delete(restaurantFixture);
-        Restaurant result = target.findOne(1L);
+        target.delete(UserFixture);
+        User result = target.findOne(1L);
 
         // THEN
         assertThat(result, nullValue());
@@ -87,10 +112,10 @@ public class RestaurantRepositoryIT {
         // GIVEN
 
         // WHEN
-        Restaurant result = target.findOne(1L);
+        User result = target.findOne(1L);
 
         // THEN
         assertNotNull(result);
-        assertThat(result.getName(), equalTo("BK"));
+        assertThat(result.getName(), equalTo("Frank Underwood"));
     }
 }
