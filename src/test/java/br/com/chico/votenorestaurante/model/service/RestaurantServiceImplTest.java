@@ -1,9 +1,10 @@
 package br.com.chico.votenorestaurante.model.service;
 
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
-import br.com.chico.votenorestaurante.model.repository.RestaurantRepository;
+import br.com.chico.votenorestaurante.model.integrationTest.repository.RestaurantRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -23,18 +24,16 @@ import static org.mockito.Mockito.times;
  */
 public class RestaurantServiceImplTest {
     private final static Long RESTAURANT_ID = 1L;
-    protected
+
     @Mock
-    RestaurantRepository mockRestaurantRepository;
+    private RestaurantRepository mockRestaurantRepository;
+    @InjectMocks
     private RestaurantServiceImpl target;
     private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Maria João", "/", new HashSet<>());
 
     @Before
     public void parabailarlabamba() {
         MockitoAnnotations.initMocks(this);
-
-        this.target = new RestaurantServiceImpl();
-        this.target.setRepository(mockRestaurantRepository);
     }
 
     @Test

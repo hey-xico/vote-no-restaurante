@@ -1,9 +1,10 @@
 package br.com.chico.votenorestaurante.model.service;
 
 import br.com.chico.votenorestaurante.model.entity.User;
-import br.com.chico.votenorestaurante.model.repository.UserRepository;
+import br.com.chico.votenorestaurante.model.integrationTest.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -24,19 +25,17 @@ import static org.mockito.Mockito.times;
 public class UserServiceImplTest {
 
     private final static Long USER_ID = 1L;
-
+    @InjectMocks
     private UserServiceImpl target;
-
+    @Mock
+    protected UserRepository mockUserRepository;
     private User userFixture = new User(USER_ID, "Teste", "teste@teste.com", new HashSet<>());
 
-    protected @Mock UserRepository mockUserRepository;
+
 
     @Before
     public void adocicaMeuAmorAMinhaVidaOeeeeeH() {
         MockitoAnnotations.initMocks(this);
-
-        this.target = new UserServiceImpl();
-        this.target.setRepo(mockUserRepository);
     }
 
     @Test

@@ -1,4 +1,4 @@
-package br.com.chico.votenorestaurante.model.repository;
+package br.com.chico.votenorestaurante.model.integrationTest.repository;
 
 import br.com.chico.votenorestaurante.VoteNoRestauranteApplication;
 import br.com.chico.votenorestaurante.model.entity.Restaurant;

@@ -3,9 +3,10 @@ package br.com.chico.votenorestaurante.model.service;
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
 import br.com.chico.votenorestaurante.model.entity.User;
 import br.com.chico.votenorestaurante.model.entity.UserVote;
-import br.com.chico.votenorestaurante.model.repository.UserVoteRepository;
+import br.com.chico.votenorestaurante.model.integrationTest.repository.UserVoteRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -28,9 +29,9 @@ public class UserVoteServiceImplTest {
     private final static Long USER_VOTE_ID = 1L;
     private final static Long USER_ID = 1L;
     private final static Long RESTAURANT_ID = 1L;
-    protected
     @Mock
-    UserVoteRepository mockUserVoteRepository;
+    protected UserVoteRepository mockUserVoteRepository;
+    @InjectMocks
     private UserVoteServiceImpl target;
     private User userFixture = new User(USER_ID, "Teste", "teste@teste.com", new HashSet<>());
     private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Vento Aragano", "/", new HashSet<>());
@@ -38,11 +39,7 @@ public class UserVoteServiceImplTest {
 
     @Before
     public void adocicaMeuAmorAMinhaVidaOeeeeeH() {
-        
         MockitoAnnotations.initMocks(this);
-
-        this.target = new UserVoteServiceImpl();
-        this.target.setRepo(mockUserVoteRepository);
     }
 
     @Test

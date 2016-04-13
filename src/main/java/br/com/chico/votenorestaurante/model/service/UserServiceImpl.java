@@ -1,7 +1,7 @@
 package br.com.chico.votenorestaurante.model.service;
 
 import br.com.chico.votenorestaurante.model.entity.User;
-import br.com.chico.votenorestaurante.model.repository.UserRepository;
+import br.com.chico.votenorestaurante.model.integrationTest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -50,10 +50,4 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException(message);
     }
 
-    /**
-     * For test reason!
-     * */
-    public void setRepo(UserRepository repo) {
-        this.repo = repo;
-    }
 }

@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BallotBox {
-    private long restaurantId;
-    private long total;
+    private int restaurantId;
+    private int total;
 }

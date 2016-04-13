@@ -1,7 +1,7 @@
 package br.com.chico.votenorestaurante.model.service;
 
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
-import br.com.chico.votenorestaurante.model.repository.RestaurantRepository;
+import br.com.chico.votenorestaurante.model.integrationTest.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -50,10 +50,4 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
 
-    /**
-     * For test purpose
-     * */
-    public void setRepository(RestaurantRepository repository) {
-        this.repository = repository;
-    }
 }

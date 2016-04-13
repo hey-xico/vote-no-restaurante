@@ -1,4 +1,4 @@
-package br.com.chico.votenorestaurante.model.repository;
+package br.com.chico.votenorestaurante.model.integrationTest.repository;
 
 import br.com.chico.votenorestaurante.model.entity.UserVote;
 import org.springframework.data.jpa.repository.JpaRepository;
