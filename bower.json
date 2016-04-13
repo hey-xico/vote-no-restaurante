@@ -1,0 +1,31 @@
+{
+  "name": "Vote no Restaurante",
+  "homepage": "https://github.com/raaildo/vote-no-restaurante",
+  "authors": [
+    "Chico <francisco.almeida@outloo.com>"
+  ],
+  "description": "Selecione o seu restaurante favorito",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "bluesoft",
+    "restaurante",
+    "chico"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/main/resources/static/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.3",
+    "angular-resource": "~1.5.3",
+    "angular-bootstrap": "~1.3.1",
+    "lodash": "~4.10.0",
+    "bootstrap": "~3.3.6"
+  }
+}

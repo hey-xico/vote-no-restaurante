@@ -23,13 +23,11 @@ import static org.mockito.Mockito.times;
  */
 public class RestaurantServiceImplTest {
     private final static Long RESTAURANT_ID = 1L;
-
-    private RestaurantServiceImpl target;
-
-    private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Maria João", new HashSet<>());
-
-    protected @Mock
+    protected
+    @Mock
     RestaurantRepository mockRestaurantRepository;
+    private RestaurantServiceImpl target;
+    private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Maria João", "/", new HashSet<>());
 
     @Before
     public void parabailarlabamba() {
@@ -106,9 +104,9 @@ public class RestaurantServiceImplTest {
         //GIVEN
         List<Restaurant> restaurantsFixture =
                 Arrays.asList(
-                        new Restaurant(1L, "Maria João", new HashSet<>()),
-                        new Restaurant(2L, "El Uruguayo", new HashSet<>()),
-                        new Restaurant(3L, "Maria João", new HashSet<>()));
+                        new Restaurant(1L, "Maria João", "/", new HashSet<>()),
+                        new Restaurant(2L, "El Uruguayo", "/", new HashSet<>()),
+                        new Restaurant(3L, "Maria João", "/", new HashSet<>()));
 
         Mockito.when(mockRestaurantRepository.findAll())
                 .thenReturn(restaurantsFixture);

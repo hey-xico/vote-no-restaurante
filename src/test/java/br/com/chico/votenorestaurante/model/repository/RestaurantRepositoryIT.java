@@ -58,6 +58,7 @@ public class RestaurantRepositoryIT {
         //Given
         Restaurant restaurantFixture = new Restaurant();
         restaurantFixture.setName("Vento Aragano");
+        restaurantFixture.setPathImage("//");
 
         //When
         Restaurant result = target.save(restaurantFixture);

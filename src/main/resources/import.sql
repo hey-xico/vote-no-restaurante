@@ -1,4 +1,4 @@
-insert into RESTAURANTS(name) values ('teste');
-insert into RESTAURANTS(name) values ('teste2');
-insert into RESTAURANTS(name) values ('teste3');
-insert into RESTAURANTS(name) values ('teste4');
+INSERT INTO RESTAURANTS (name, pathimage) VALUES ('teste', '');
+INSERT INTO RESTAURANTS (name, pathimage) VALUES ('teste2', '');
+INSERT INTO RESTAURANTS (name, pathimage) VALUES ('teste3', '');
+INSERT INTO RESTAURANTS (name, pathimage) VALUES ('teste4', '');

@@ -28,15 +28,13 @@ public class UserVoteServiceImplTest {
     private final static Long USER_VOTE_ID = 1L;
     private final static Long USER_ID = 1L;
     private final static Long RESTAURANT_ID = 1L;
-
+    protected
+    @Mock
+    UserVoteRepository mockUserVoteRepository;
     private UserVoteServiceImpl target;
-
     private User userFixture = new User(USER_ID, "Teste", "teste@teste.com", new HashSet<>());
-    private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Vento Aragano", new HashSet<>());
-
+    private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Vento Aragano", "/", new HashSet<>());
     private UserVote userVoteFixture;
-
-    protected @Mock UserVoteRepository mockUserVoteRepository;
 
     @Before
     public void adocicaMeuAmorAMinhaVidaOeeeeeH() {

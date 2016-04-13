@@ -25,7 +25,12 @@ public class Restaurant {
     private long id;
 
     @NotNull
+    @Column(name = "NAME")
     private String name;
+
+    @NotNull
+    @Column(name = "PATHIMAGE")
+    private String pathImage;
 
     @OneToMany(mappedBy = "restaurant")
     private Set<UserVote> userVotes;
