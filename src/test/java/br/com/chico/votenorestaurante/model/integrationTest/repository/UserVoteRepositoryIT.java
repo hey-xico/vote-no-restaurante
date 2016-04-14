@@ -1,6 +1,6 @@
 package br.com.chico.votenorestaurante.model.integrationTest.repository;
 
-import br.com.chico.votenorestaurante.VoteNoRestauranteApplication;
+import br.com.chico.votenorestaurante.Application;
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
 import br.com.chico.votenorestaurante.model.entity.User;
 import br.com.chico.votenorestaurante.model.entity.UserVote;
@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class})
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = VoteNoRestauranteApplication.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @DatabaseSetup(
         value = {
                 UserVoteRepositoryIT.DATASET_USER,

@@ -1,0 +1,38 @@
+{
+  "name": "vote-no-restaurante",
+  "version": "1.0.0",
+  "description": "Selecione o melhor restaurante da cidade",
+  "main": "app/app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raaildo/vote-no-restaurante.git"
+  },
+  "keywords": [
+    "bluesoft"
+  ],
+  "author": "Francisco Almeida",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raaildo/vote-no-restaurante/issues"
+  },
+  "homepage": "https://github.com/raaildo/vote-no-restaurante#readme",
+  "devDependencies": {
+    "angular-mocks": "^1.5.3",
+    "karma": "^0.13.22",
+    "karma-chai": "^0.1.0",
+    "karma-jasmine": "^0.3.8",
+    "karma-mocha": "^0.2.2",
+    "karma-phantomjs-launcher": "^1.0.0"
+  },
+  "dependencies": {
+    "angular": "^1.5.3",
+    "chai": "^3.5.0",
+    "jasmine-core": "^2.4.1",
+    "mocha": "^2.4.5",
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.7"
+  }
+}

@@ -1,6 +1,6 @@
 package br.com.chico.votenorestaurante.model.integrationTest.repository;
 
-import br.com.chico.votenorestaurante.VoteNoRestauranteApplication;
+import br.com.chico.votenorestaurante.Application;
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -30,7 +30,7 @@ import static org.junit.Assert.assertThat;
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class})
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = VoteNoRestauranteApplication.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @DatabaseSetup(RestaurantRepositoryIT.DATASET)
 @DatabaseTearDown(type = DELETE_ALL, value = {RestaurantRepositoryIT.DATASET})
 @DirtiesContext

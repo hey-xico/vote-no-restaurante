@@ -1,6 +1,6 @@
 package br.com.chico.votenorestaurante.controller.integrationTest;
 
-import br.com.chico.votenorestaurante.VoteNoRestauranteApplication;
+import br.com.chico.votenorestaurante.Application;
 import br.com.chico.votenorestaurante.model.BallotBox;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Francisco Almeida
  * @since 12/04/2016
  */
-@SpringApplicationConfiguration(classes = VoteNoRestauranteApplication.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 public class BallotControllerIT extends AbstractTransactionalJUnit4SpringContextTests {
 
