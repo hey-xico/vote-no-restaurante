@@ -1,25 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="yooApp">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Script Eden ( http://scripteden.net/ ) Template Builder v2.0.0">
     <!--pageMeta-->
 
     <!-- Loading Bootstrap -->
-    <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Loading Flat UI -->
-    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="app/css/style.css" rel="stylesheet">
 
-    <link href="css/style.css" rel="stylesheet">
-
-    <link href="css/style.complete.css" rel="stylesheet">
-
-
+    <link href="app/css/style.complete.css" rel="stylesheet">
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <style type="text/css"></style>
 </head>
-<body>
+<body ng-controller="yooController as vm">
 
 <div id="page" class="page">
 
@@ -33,7 +28,7 @@
 
                     <p class="lead text-center editContent"
                        style="color: rgb(52, 73, 94); font-size: 30.006px; background-color: rgb(255, 255, 255);">
-                        Vote No Restaurante
+                        {{vm.title}}
                     </p>
 
                 </div><!-- /.col-md-12 -->
@@ -46,38 +41,23 @@
 
                     <div class="row">
 
-                        <div class="col-md-6 narrow">
+                        <div class="col-md-6 narrow" ng-repeat="option in vm.pair">
 
-                            <div>
+                            <div class="text-center">
 
-                                <h2 class="margin-bottom-40 editContent">Vote</h2>
+                                <button type="button" class="btn btn-success btn-xs" ng-click="vm.next(option)">Vote
+                                </button>
 
-                                <img width="300px" height="300px" src="images/allblack.png" class="img-rounded teamImage" alt="">
+                                <img src="http://localhost:8080/vote-no-restaurante/app/{{option.pathImage}}"
+                                     class="img-rounded teamImage" alt="">
 
                                 <p class="editContent">
-
+                                    {{option.name}}
                                 </p>
-
                             </div>
 
                         </div><!-- /.col-md-6 -->
 
-                        <div class="col-md-6 narrow">
-
-                            <div>
-
-                                <h2 class="margin-bottom-40 editContent">Vote</h2>
-
-                                <img src="images/omalleys.jpg" class="img-rounded teamImage" alt="">
-
-                                <p class="editContent">
-                                    <!--dasdasda-->
-                                </p>
-
-
-                            </div>
-
-                        </div><!-- /.col-md-6 -->
 
                     </div><!-- /.row -->
 
@@ -89,5 +69,9 @@
 
     </div><!-- /.item --></div><!-- /#page -->
 
+<script type="text/javascript" src="app/js/app.js"></script>
+<script type="text/javascript" src="app/js/yooController.js"></script>
+<script type="text/javascript" src="app/js/yooService.js"></script>
+<script type="text/javascript" src="app/js/Ballot.js"></script>
 </body>
 </html>
