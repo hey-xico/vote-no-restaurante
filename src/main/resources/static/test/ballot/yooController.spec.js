@@ -106,16 +106,14 @@ describe('yooController', function () {
                 ]
             ];
 
-         //var yooController = $controller('yooController', { yooService: yooService });
-        //yooController.setNext(combinationFixture);
-        
-        expect(yooController).toBeDefined();
-        expect(yooController.setNext).toBeDefined();
+        expect(yooController.pairindex).toBe(0);
 
-        /*expect(yooController.pairindex).toBe(eqeqw);
-        expect(yooController.pair).toHaveBeenCalled();
-        expect(yooController.pair.length).toBe(1);
-        expect(yooController.pairindex).toBe(1);*/
+        expect(yooController.setNext).toBeDefined();
+        result = yooController.setNext(combinationFixture);
+
+        expect(result.length).toBe(2);
+
+        expect(yooController.pairindex).toBe(1);
     })
 
 });
