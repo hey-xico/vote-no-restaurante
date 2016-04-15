@@ -3,7 +3,7 @@ package br.com.chico.votenorestaurante.model.service;
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
 import br.com.chico.votenorestaurante.model.entity.User;
 import br.com.chico.votenorestaurante.model.entity.UserVote;
-import br.com.chico.votenorestaurante.model.integrationTest.repository.UserVoteRepository;
+import br.com.chico.votenorestaurante.model.repository.UserVoteRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -12,8 +12,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -33,8 +33,8 @@ public class UserVoteServiceImplTest {
     protected UserVoteRepository mockUserVoteRepository;
     @InjectMocks
     private UserVoteServiceImpl target;
-    private User userFixture = new User(USER_ID, "Teste", "teste@teste.com", new HashSet<>());
-    private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Vento Aragano", "/", new HashSet<>());
+    private User userFixture = new User(USER_ID, "Teste", "teste@teste.com");
+    private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Vento Aragano", "/");
     private UserVote userVoteFixture;
 
     @Before
@@ -180,5 +180,29 @@ public class UserVoteServiceImplTest {
         assertNotNull(result);
         assertThat(result.size(), equalTo(1));
         assertThat(this.userVoteFixture, equalTo(this.userVoteFixture));
+    }
+
+    @Test
+    public void test_findByUser_success() {
+
+        // GIVEN
+
+        userVoteFixture = new UserVote();
+        userVoteFixture.setId(USER_VOTE_ID);
+        userVoteFixture.setRestaurant(this.restaurantFixture);
+        List<UserVote> userVoteListFixTure = new ArrayList<>();
+
+        userVoteListFixTure.add(userVoteFixture);
+
+        Mockito.when(mockUserVoteRepository.findByUser(userFixture))
+                .thenReturn(userVoteListFixTure);
+
+        // WHEN
+        List<UserVote> result = target.findByUser(userFixture);
+
+        // THEN
+        assertNotNull(result);
+        assertThat(result.size(), equalTo(1));
+        assertThat(result, equalTo(userVoteListFixTure));
     }
 }

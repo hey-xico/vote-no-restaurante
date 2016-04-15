@@ -30,11 +30,11 @@ public class ManageRestaurantTest {
         this.result = new ArrayList<>();
         this.target = new ManageRestaurant();
         this.restaurants = asList(
-                new Restaurant(1L, "La Tambouille", "/", new HashSet<>()),
-                new Restaurant(2L, "Varanda Grill", "/", new HashSet<>()),
-                new Restaurant(3L, "Barbacoa", "/", new HashSet<>()),
-                new Restaurant(4L, "Era uma vez um Chalezinho", "/", new HashSet<>()),
-                new Restaurant(5L, "Fasano", "/", new HashSet<>()));
+                new Restaurant(1L, "La Tambouille", "/"),
+                new Restaurant(2L, "Varanda Grill", "/"),
+                new Restaurant(3L, "Barbacoa", "/"),
+                new Restaurant(4L, "Era uma vez um Chalezinho", "/"),
+                new Restaurant(5L, "Fasano", "/"));
     }
 
     @Test
@@ -43,8 +43,8 @@ public class ManageRestaurantTest {
         //Given
         Set<Restaurant> restaurantCombinationsFixture =
                 new HashSet<Restaurant>() {{
-                    add(new Restaurant(1L, "La Tambouille", "/", new HashSet<>()));
-                    add(new Restaurant(2L, "Varanda Grill", "/", new HashSet<>()));
+                    add(new Restaurant(1L, "La Tambouille", "/"));
+                    add(new Restaurant(2L, "Varanda Grill", "/"));
                 }};
 
 
@@ -61,8 +61,8 @@ public class ManageRestaurantTest {
         //Given
         Set<Restaurant> restaurantCombinationsFixture =
                 new HashSet<Restaurant>() {{
-                    add(new Restaurant(1L, "La Tambouille", "/", new HashSet<>()));
-                    add(new Restaurant(1L, "La Tambouille", "/", new HashSet<>()));
+                    add(new Restaurant(1L, "La Tambouille", "/"));
+                    add(new Restaurant(1L, "La Tambouille", "/"));
                 }};
 
         //When

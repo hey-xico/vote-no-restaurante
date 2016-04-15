@@ -1,4 +1,4 @@
-function Ballot(restaurant_id, total) {
-	this.restaurant_id = restaurant_id;
+function Ballot(restaurantId, total) {
+	this.restaurantId = restaurantId;
 	this.total = total
 }

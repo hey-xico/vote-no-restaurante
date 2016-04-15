@@ -22,11 +22,11 @@ public class UserVote {
     @Column(name = "USER_VOTE_ID")
     private long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "RESTAURANT_ID")
     private Restaurant restaurant;
 

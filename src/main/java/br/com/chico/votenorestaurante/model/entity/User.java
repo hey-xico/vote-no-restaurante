@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 /**
  * @author Francisco Almeida
@@ -35,6 +34,5 @@ public class User {
     @Email
     private String email;
 
-    @OneToMany(mappedBy = "user")
-    private Set<UserVote> userVotes;
+
 }

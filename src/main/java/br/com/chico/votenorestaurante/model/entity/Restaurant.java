@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 /**
  * @author Francisco Almeida
@@ -32,7 +31,5 @@ public class Restaurant {
     @Column(name = "PATHIMAGE")
     private String pathImage;
 
-    @OneToMany(mappedBy = "restaurant")
-    private Set<UserVote> userVotes;
 
 }

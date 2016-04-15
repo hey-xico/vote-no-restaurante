@@ -1,7 +1,7 @@
 package br.com.chico.votenorestaurante.model.service;
 
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
-import br.com.chico.votenorestaurante.model.integrationTest.repository.RestaurantRepository;
+import br.com.chico.votenorestaurante.model.repository.RestaurantRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -11,7 +11,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -29,7 +28,7 @@ public class RestaurantServiceImplTest {
     private RestaurantRepository mockRestaurantRepository;
     @InjectMocks
     private RestaurantServiceImpl target;
-    private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Maria João", "/", new HashSet<>());
+    private Restaurant restaurantFixture = new Restaurant(RESTAURANT_ID, "Maria João", "/");
 
     @Before
     public void parabailarlabamba() {
@@ -103,9 +102,9 @@ public class RestaurantServiceImplTest {
         //GIVEN
         List<Restaurant> restaurantsFixture =
                 Arrays.asList(
-                        new Restaurant(1L, "Maria João", "/", new HashSet<>()),
-                        new Restaurant(2L, "El Uruguayo", "/", new HashSet<>()),
-                        new Restaurant(3L, "Maria João", "/", new HashSet<>()));
+                        new Restaurant(1L, "Maria João", "/"),
+                        new Restaurant(2L, "El Uruguayo", "/"),
+                        new Restaurant(3L, "Maria João", "/"));
 
         Mockito.when(mockRestaurantRepository.findAll())
                 .thenReturn(restaurantsFixture);

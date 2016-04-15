@@ -1,4 +1,4 @@
-(function(){
+(function () {
     'use strict';
     angular
         .module('yooApp')
@@ -12,18 +12,7 @@
         };
 
         function save(user) {
-            return $http({
-                cache: true,
-                url:'user/save',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                responseType:'json',
-                method:'POST',
-                data:{
-                    user : user
-                }
-            }).then(function(response) {
+            return $http.post('/vote-no-restaurante/user/save', user).then(function (response) {
                 return response.data;
             });
         }

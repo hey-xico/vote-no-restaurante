@@ -1,7 +1,8 @@
 package br.com.chico.votenorestaurante.model.service;
 
+import br.com.chico.votenorestaurante.model.entity.User;
 import br.com.chico.votenorestaurante.model.entity.UserVote;
-import br.com.chico.votenorestaurante.model.integrationTest.repository.UserVoteRepository;
+import br.com.chico.votenorestaurante.model.repository.UserVoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -56,4 +57,8 @@ public class UserVoteServiceImpl implements UserVoteService {
             throw new IllegalArgumentException(message);
     }
 
+    @Override
+    public List<UserVote> findByUser(User user) {
+        return this.repo.findByUser(user);
+    }
 }

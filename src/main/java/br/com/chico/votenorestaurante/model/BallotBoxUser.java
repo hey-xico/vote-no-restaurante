@@ -4,16 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
- * @author Francisco Almeida
- * @since 12/04/2016
- * <p>
- * Used to store the user ballots
+ * @author Francisco Almeida on 15/04/2016.
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BallotBox {
-    private Long restaurantId;
-    private Long total;
+public class BallotBoxUser {
+    private Long userId;
+    private List<BallotBox> ballotBoxList;
 }

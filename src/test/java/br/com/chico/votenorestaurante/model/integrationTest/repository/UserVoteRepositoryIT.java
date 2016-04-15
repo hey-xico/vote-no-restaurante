@@ -4,6 +4,9 @@ import br.com.chico.votenorestaurante.Application;
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
 import br.com.chico.votenorestaurante.model.entity.User;
 import br.com.chico.votenorestaurante.model.entity.UserVote;
+import br.com.chico.votenorestaurante.model.repository.RestaurantRepository;
+import br.com.chico.votenorestaurante.model.repository.UserRepository;
+import br.com.chico.votenorestaurante.model.repository.UserVoteRepository;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
@@ -109,6 +112,22 @@ public class UserVoteRepositoryIT {
         //THEN
         assertTrue(!result.isEmpty());
         assertThat(result.get(0).getId(), equalTo(1L));
+    }
+
+    @Test
+    public void test_findByUser_succeed() {
+        //GIVEN
+        User userFixture = userRepository.findOne(1L);
+        assertNotNull(userFixture);
+
+        //WHEN
+        List<UserVote> result = target.findByUser(userFixture);
+
+        result.forEach(System.out::println);
+        //THEN
+        assertTrue(!result.isEmpty());
+        assertThat(result.get(0).getId(), equalTo(1L));
+
     }
 
 }

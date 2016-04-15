@@ -2,6 +2,7 @@ package br.com.chico.votenorestaurante.model.integrationTest.repository;
 
 import br.com.chico.votenorestaurante.Application;
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
+import br.com.chico.votenorestaurante.model.repository.RestaurantRepository;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;

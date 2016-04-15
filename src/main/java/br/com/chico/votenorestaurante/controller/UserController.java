@@ -3,11 +3,14 @@ package br.com.chico.votenorestaurante.controller;
 import br.com.chico.votenorestaurante.model.entity.User;
 import br.com.chico.votenorestaurante.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author Francisco Almeida
@@ -22,10 +25,15 @@ public class UserController {
 
     @RequestMapping(
             value = "save",
-            method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public User saveUser(@RequestBody User user) {
-        return this.userService.save(user);
+            method = RequestMethod.POST)
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
+        return new ResponseEntity<>(this.userService.save(user), HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            value = "find-all",
+            method = RequestMethod.GET)
+    public ResponseEntity<List<User>> findAll() {
+        return new ResponseEntity<>(this.userService.findAll(), HttpStatus.OK);
     }
 }

@@ -1,12 +1,15 @@
 package br.com.chico.votenorestaurante.controller;
 
 import br.com.chico.votenorestaurante.bo.BallotBO;
-import br.com.chico.votenorestaurante.model.BallotBox;
+import br.com.chico.votenorestaurante.model.BallotBoxUser;
 import br.com.chico.votenorestaurante.model.entity.Restaurant;
+import br.com.chico.votenorestaurante.model.entity.UserVote;
 import br.com.chico.votenorestaurante.model.service.RestaurantService;
 import br.com.chico.votenorestaurante.transform.ManageRestaurant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,13 +49,11 @@ public class BallotController {
         return restaurantPairs;
     }
     @RequestMapping(
-            value = "register-vote",
-            method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public String registerVote(@RequestBody List<BallotBox> ballotBox) throws IOException {
-
-        System.out.println(ballotBox);
-        return "";
+            value = "submit",
+            method = RequestMethod.POST)
+    public ResponseEntity<UserVote> registerVote(@RequestBody BallotBoxUser ballotBox) throws IOException {
+        List<UserVote> vote = ballotBO.submitBallot(ballotBox);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }

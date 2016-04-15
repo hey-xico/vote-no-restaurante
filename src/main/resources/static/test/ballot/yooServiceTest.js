@@ -23,6 +23,45 @@ describe('yooService', function () {
             //noinspection BadExpressionStatementJS
             expect(succeeded).toBe(true);
         });
+
+        it('Given a vaid ballotBox, must successfully submit it', function () {
+            var ballotBox = {
+                user_id: 1,
+                ballot: [
+                    {
+                        restaurant_id: 1,
+                        total: 2
+                    },
+                    {
+                        restaurant_id: 2,
+                        total: 3
+                    },
+                    {
+                        restaurant_id: 3,
+                        total: 1
+                    },
+                    {
+                        restaurant_id: 4,
+                        total: 1
+                    },
+                    {
+                        restaurant_id: 5,
+                        total: 3
+                    }
+                ]
+            }
+
+            $httpBackend.when('POST', '/vote-no-restaurante/ballot/submit').respond(ballotBox);
+
+            var result;
+
+            yooService.submitBallot(ballotBox).then(function (data) {
+                result = data;
+            });
+            $httpBackend.flush();
+            //noinspection BadExpressionStatementJS
+            expect(result).toBe(result);
+        });
         
         
     });

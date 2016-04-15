@@ -8,7 +8,7 @@
 		function yooService($http, $log) {
 			return {
 				getCombinations: getCombinations,
-				voteRegister: voteRegister
+				submitBallot: submitBallot
 			}
 
 			function getCombinations() {
@@ -27,9 +27,11 @@
 				
 			}
 
-			function voteRegister() {
+			function submitBallot(ballotBox) {
 
-				return 'pass';
+				return $http.post('/vote-no-restaurante/ballot/submit', ballotBox).then(function (response) {
+					return response.data;
+				});
 				
 			}
 		}

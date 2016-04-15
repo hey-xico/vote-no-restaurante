@@ -1,7 +1,7 @@
 package br.com.chico.votenorestaurante.model.service;
 
 import br.com.chico.votenorestaurante.model.entity.User;
-import br.com.chico.votenorestaurante.model.integrationTest.repository.UserRepository;
+import br.com.chico.votenorestaurante.model.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -11,7 +11,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -29,7 +28,7 @@ public class UserServiceImplTest {
     private UserServiceImpl target;
     @Mock
     protected UserRepository mockUserRepository;
-    private User userFixture = new User(USER_ID, "Teste", "teste@teste.com", new HashSet<>());
+    private User userFixture = new User(USER_ID, "Teste", "teste@teste.com");
 
 
 
@@ -42,7 +41,7 @@ public class UserServiceImplTest {
     public void test_findOne_success() {
 
         // GIVEN
-        User userFixture = new User(USER_ID, "Teste", "teste@teste.com", new HashSet<>());
+        User userFixture = new User(USER_ID, "Teste", "teste@teste.com");
 
         Mockito.when(mockUserRepository.findOne(USER_ID))
                 .thenReturn(userFixture);
@@ -108,9 +107,9 @@ public class UserServiceImplTest {
         //GIVEN
         List<User> usersFixture =
                 Arrays.asList(
-                        new User(1L, "ABCS", "acbd@teste.com", new HashSet<>()),
-                        new User(2L, "BCDA", "bcda@teste.com", new HashSet<>()),
-                        new User(3L, "DCBA", "dcba@teste.com", new HashSet<>())
+                        new User(1L, "ABCS", "acbd@teste.com"),
+                        new User(2L, "BCDA", "bcda@teste.com"),
+                        new User(3L, "DCBA", "dcba@teste.com")
                 );
 
         Mockito.when(mockUserRepository.findAll())

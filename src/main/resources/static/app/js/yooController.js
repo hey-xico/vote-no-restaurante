@@ -3,7 +3,7 @@
         .module('yooApp')
         .controller('yooController', yooController);
 
-    yooController.$inject = ['$scope', 'yooService'];
+    yooController.$inject = ['$scope', 'yooService', 'yooUserService'];
 
     function yooController($scope, yooService, yooUserService) {
         var vm = this;
@@ -64,7 +64,7 @@
         }
         function getIndex(arr, value) {
             for (var i = 0; i < arr.length; i++) {
-                if (arr[i].restaurant_id == value)
+                if (arr[i].restaurantId == value)
                     return i;
             }
         }
@@ -73,11 +73,31 @@
         vm.submitForm = function(isValid) {
             // check to make sure the form is completely valid
             if (isValid) {
-                submitUser(vm.user);
+                vm.submitUser(vm.user);
             }
         };
+
         vm.submitUser = function(user){
-            userService.save(user).then();
+            yooUserService.save(user).then(
+                function (data) {
+                    vm.sendBallot(data, vm.ballotBox);
+                    vm.savedUser = data;
+                }
+            );
+        };
+        
+        vm.sendBallot = function (user, ballotBox) {
+
+            vm.ballotBoxOfUser = {
+                userId: user.id,
+                ballotBoxList : ballotBox
+            };
+
+            yooService.submitBallot(vm.ballotBoxOfUser).then(
+                function (data) {
+                    vm.successBallotSubmit = 'Voto registrado com sucesso';
+                }
+            );
         }
 
     }

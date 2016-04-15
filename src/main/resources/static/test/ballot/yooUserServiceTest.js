@@ -11,19 +11,17 @@ describe('yooService', function () {
 
     describe('ChecK User ServiceBehavior', function () {
 
-        it('Sabe a user should return the persisted object', function () {
+        it('Save a user should return the persisted object', function () {
 
             var user = {
                 name: 'Frank Underwood',
                 email: 'fu@wh.com'
             };
 
-            $httpBackend
-                .expectPOST('user/save')
-                .respond(user);
+            $httpBackend.whenPOST('/vote-no-restaurante/user/save').respond(user);
 
             var result;
-            yooUserService.save(user).then(function(data) {
+            yooUserService.save(user).then(function (data) {
                 result = data;
             });
 

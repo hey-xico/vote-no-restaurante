@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import java.util.HashSet;
+import org.springframework.http.ResponseEntity;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -35,18 +34,18 @@ public class UserControllerTest {
     @Test
     public void test_saveUser_success() {
         //GIVEN
-        User userFixture = new User(1L, "Frank", "fu@almeida.com", new HashSet<>());
+        User userFixture = new User(1L, "Frank", "fu@almeida.com");
         Mockito.when(userServiceFixture.save(userFixture)).thenReturn(userFixture);
 
         //WHEN
-        User result = target.saveUser(userFixture);
+        ResponseEntity<User> result = target.saveUser(userFixture);
 
         //THEN
 
         Mockito.verify(userServiceFixture).save(userFixture);
 
         assertNotNull(result);
-        assertThat(result, equalTo(userFixture));
+        assertThat(result.getBody(), equalTo(userFixture));
 
     }
 }
