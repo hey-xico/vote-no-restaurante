@@ -5,12 +5,13 @@
 
     yooController.$inject = ['$scope', 'yooService'];
 
-    function yooController($scope, yooService) {
+    function yooController($scope, yooService, yooUserService) {
         var vm = this;
         
         vm.pair = {};
         vm.combinations = [];
         vm.ballotBox = [];
+        vm.registryUser = false;
 
         vm.pairindex = 0;
 
@@ -20,6 +21,7 @@
 
         function activate() {
             getCombinations();
+
         }
 
         function getCombinations() {
@@ -29,32 +31,34 @@
             });
         }
         
-        function voteRegister(ballot) {
+        vm.voteRegister = function(ballot) {
             
             var index = getIndex(vm.ballotBox, ballot.id);
-            
+
             if (index >=0 ) {
                 vm.ballotBox[index].total++;
             } else {
                 vm.ballotBox.push(new Ballot(ballot.id, 1));
             }
-        }
+        };
 
-        vm.setNext = function setNext(combinations) {
-            if (combinations.length > vm.pairindex) {
-                vm.pairindex++;
+        vm.setNext = function(combinations) {
+            if (vm.pairindex < combinations.length) {
                 return combinations[vm.pairindex];
             } else {
-                return "hue";
+                vm.title = 'Obrigado!';
+                vm.subtitle = 'Para finalizar, informe seu nome e um e-mail';
+                vm.slugline = 'Prometemos não manda spam';
+                vm.registryUser = true;
             }
         };
 
         function computeVote() {
             vm.next = function (ballot) {
                 if(ballot) 
-                    voteRegister(ballot);
+                    vm.voteRegister(ballot);
                 vm.pair = vm.setNext(vm.combinations);
-                console.log(vm.pair);
+                vm.pairindex++;
             };
             vm.next();
         }
@@ -65,6 +69,16 @@
             }
         }
 
+        // function to submit the form after all validation has occurred
+        vm.submitForm = function(isValid) {
+            // check to make sure the form is completely valid
+            if (isValid) {
+                submitUser(vm.user);
+            }
+        };
+        vm.submitUser = function(user){
+            userService.save(user).then();
+        }
 
     }
 })();

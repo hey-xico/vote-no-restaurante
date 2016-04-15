@@ -113,8 +113,98 @@ describe('yooController', function () {
 
         expect(result.length).toBe(2);
 
-        expect(yooController.pairindex).toBe(1);
     })
+
+    it('Given a selected ballot, must compute the vote and increase the ballot box', function(){
+        var ballotItemFixture = {
+            "id": 1,
+            "name": "A Figueira Rubaiyat",
+            "pathImage": "images/rubaiyat.png",
+            "userVotes": []
+        };
+
+        expect(yooController.ballotBox.length).toBe(0);
+
+        yooController.voteRegister(ballotItemFixture);
+
+        expect(yooController.ballotBox.length).toBe(1);
+        expect(yooController.ballotBox[0].restaurant_id).toBe(1);
+    });
+
+    it('Given a selected ballot n times, the BallotBox must store only one and increase the vote', function(){
+        var ballotItemFixture = {
+            "id": 1,
+            "name": "A Figueira Rubaiyat",
+            "pathImage": "images/rubaiyat.png",
+            "userVotes": []
+        };
+
+        expect(yooController.ballotBox.length).toBe(0);
+
+        yooController.voteRegister(ballotItemFixture);
+
+        expect(yooController.ballotBox[0].total).toBe(1);
+
+        yooController.voteRegister(ballotItemFixture);
+        yooController.voteRegister(ballotItemFixture);
+        yooController.voteRegister(ballotItemFixture);
+
+        expect(yooController.ballotBox.length).toBe(1);
+
+        expect(yooController.ballotBox[0].total).toBe(4);
+
+
+    });
+
+    it('Given a selected ballot twice, vote in the BallotBox must be increased', function(){
+        var ballotItemFixture = {
+            "id": 1,
+            "name": "A Figueira Rubaiyat",
+            "pathImage": "images/rubaiyat.png",
+            "userVotes": []
+        };
+
+        expect(yooController.ballotBox.length).toBe(0);
+
+        yooController.voteRegister(ballotItemFixture);
+
+        expect(yooController.ballotBox[0].total).toBe(1);
+        expect(yooController.ballotBox.length).toBe(1);
+
+        yooController.voteRegister(ballotItemFixture);
+
+        expect(yooController.ballotBox[0].total).toBe(2);
+
+    });
+
+    it('When the combinations finish, the nextfunction must set the User registry as true', function(){
+        //Given
+        yooController.pairindex = 5;
+        var combinations = {length : 5};
+
+        //When
+        var result = yooController.setNext(combinations);
+
+        expect(yooController.registryUser).toBeTruthy();
+        //expect(result).toBe('hue');
+    });
+
+    describe('Save User', function(){
+
+        beforeEach(inject(function($templateCache, $compile){
+            templateHtml = $templateCache.get('path/to/my/template.html')
+            formElem = angular.element("<div>" + templateHtml + "</div>")
+            $compile(formElem)(scope)
+            form = scope.form
+
+            scope.$apply()
+        }));
+        it('Given a valid user and email, must to submit to the API', function(){
+
+
+
+        })
+    });
 
 });
 
