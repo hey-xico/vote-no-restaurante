@@ -10,16 +10,20 @@ module.exports = function (config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine', 'mocha', 'chai'],
+        frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
 
 
         // list of files / patterns to load in the browser
         files: [
-            'node_modules/angular/angular.min.js',
-            'node_modules/angular-mocks/angular-mocks.js',
-            'src/main/resources/static/app/js/*.js',
-            'src/main/resources/static/app/js/**/*.js',
-            'src/main/resources/static/test/**/*.js'
+            'src/main/resources/static/bower_components/angular/angular.min.js',
+            'src/main/resources/static/bower_components/angular-mocks/angular-mocks.js',
+            'src/main/resources/static/bower_components/bardjs/dist/bard.js',
+            'src/main/resources/static/bower_components/sinon/index.js',
+            'src/main/resources/static/votenorestaurante/app/*.js',
+            'src/main/resources/static/votenorestaurante/app/**/*.module.js',
+            'src/main/resources/static/votenorestaurante/app/**/*.controller.js',
+            'src/main/resources/static/votenorestaurante/app/**/*.spec.js',
+            'src/main/resources/static/votenorestaurante/app/**/*.js'
         ],
 
 
