@@ -221,9 +221,12 @@ public class UserVoteServiceImplTest {
                 new UserVote(5L, new User(2L, "bbbb", "dadsda"), new Restaurant(2L, "bbbb", "usdaudhas"), 1),
                 new UserVote(6L, new User(2L, "bbbb", "dadsda"), new Restaurant(3L, "cccc", "usdaudhas"), 2)
         );
-        userVoteFixture = new UserVote();
-        userVoteFixture.setId(USER_VOTE_ID);
-        userVoteFixture.setUser(this.userFixture);
+
+        Mockito.when(mockUserVoteRepository.findByTotal())
+                .thenReturn(userVotesFixture);
+
+
+
 
     }
 }

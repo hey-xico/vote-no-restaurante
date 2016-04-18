@@ -29,6 +29,7 @@ public class RankingController {
 
     @RequestMapping(value = "total", method = RequestMethod.GET)
     public List<UserVote> loadSummarizedVotes() {
-        return userVoteService.findAll();
+        List<UserVote> allSumarized = userVoteService.findAllSumarized();
+        return allSumarized;
     }
 }

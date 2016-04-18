@@ -9,16 +9,16 @@
 
         return {
             getUserRanking: getUserRanking,
-            getRankingGlobal: getRankingGlobal
+            getOverallRanking: getOverallRanking
         };
 
-        function getUserRanking(user) {
-            return $http.get('/vote-no-restaurante/ranking/user', user)
+        function getUserRanking(userId) {
+            return $http.get('/vote-no-restaurante/ranking/user', userId)
                 .then(onComplete)
                 .catch(onError);
         }
 
-        function getRankingGlobal() {
+        function getOverallRanking() {
             return $http.get('/vote-no-restaurante/ranking/total')
                 .then(onComplete)
                 .catch(onError);

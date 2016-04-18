@@ -4,8 +4,8 @@
     angular
         .module('app.core')
         .config(routerConfig);
-
-    /** @ngInject */
+    
+    routerConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     function routerConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('ballot', {
@@ -21,7 +21,7 @@
                 controllerAs: 'vm'
             })
             .state('ranking', {
-                url: '/',
+                url: '/:id',
                 templateUrl: 'votenorestaurante/app/ranking/ranking.html',
                 controller: 'RankingController',
                 controllerAs: 'vm'

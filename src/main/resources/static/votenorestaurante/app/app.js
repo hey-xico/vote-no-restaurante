@@ -1,5 +1,5 @@
-(function() {
-	'use strict';
-	angular
-		.module('yooApp', ['app.ballot', 'app.user','app.core']);
+(function () {
+    'use strict';
+    angular
+        .module('yooApp', ['app.ballot', 'app.user', 'app.core', 'app.ranking']);
 })();

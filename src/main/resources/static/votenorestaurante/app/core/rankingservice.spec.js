@@ -19,10 +19,10 @@ describe('UserService', function () {
         it('Must succeed', function(){
 
             $httpBackend
-                .when('GET', '/vote-no-restaurante/ranking/user', userFixture)
+                .when('GET', '/vote-no-restaurante/ranking/user', 1)
                 .respond(200, []);
 
-            RankingService.getUserRanking(userFixture).then(function (data) {
+            RankingService.getUserRanking(1).then(function (data) {
                 expect(data).to.exist;
             });
 
@@ -31,10 +31,10 @@ describe('UserService', function () {
 
         it('reports error if server fails', function() {
             $httpBackend
-                .when('GET', '/vote-no-restaurante/ranking/user', userFixture)
+                .when('GET', '/vote-no-restaurante/ranking/user', 1)
                 .respond(500, {description: 'an error has occurred'});
 
-            RankingService.getUserRanking(userFixture).catch(function (data) {
+            RankingService.getUserRanking(1).catch(function (data) {
                 expect(data).to.exist;
                 expect(data).to.be.equal('an error has occurred');
             });
@@ -51,7 +51,7 @@ describe('UserService', function () {
                 .when('GET', '/vote-no-restaurante/ranking/total')
                 .respond(200, []);
 
-            RankingService.getRankingGlobal(userFixture).then(function (data) {
+            RankingService.getOverallRanking(userFixture).then(function (data) {
                 expect(data).to.exist;
             });
 
@@ -63,7 +63,7 @@ describe('UserService', function () {
                 .when('GET', '/vote-no-restaurante/ranking/total', userFixture)
                 .respond(500, {description: 'an error has occurred'});
 
-            RankingService.getRankingGlobal(userFixture).catch(function (data) {
+            RankingService.getOverallRanking(userFixture).catch(function (data) {
                 expect(data).to.exist;
                 expect(data).to.be.equal('an error has occurred');
             });

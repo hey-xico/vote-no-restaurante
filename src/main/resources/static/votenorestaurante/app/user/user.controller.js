@@ -38,12 +38,14 @@
 
             BallotService.submitBallot(vm.ballotBoxOfUser).then(
                 function (data) {
-                    console.log("oi");
-                    $state.go('ranking');
+                    vm.gotoRanking(user);
+
                 }
             );
+        };
+
+        vm.gotoRanking = function (user) {
+            $state.go('ranking', {id: user.id});
         }
-
-
     }
 })();
