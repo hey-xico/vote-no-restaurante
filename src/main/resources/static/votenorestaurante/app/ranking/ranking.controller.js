@@ -9,5 +9,6 @@
         vm.title = 'Veja a classificação';
 
 
+
     }
 })();

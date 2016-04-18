@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -204,5 +205,25 @@ public class UserVoteServiceImplTest {
         assertNotNull(result);
         assertThat(result.size(), equalTo(1));
         assertThat(result, equalTo(userVoteListFixTure));
+    }
+
+
+    @Test
+    public void test_findAllSumarized_success() {
+
+        // GIVEN
+
+        List<UserVote> userVotesFixture = Arrays.asList(
+                new UserVote(1L, new User(1L, "sdasd", "dadsda"), new Restaurant(1L, "aaa", "usdaudhas"), 2),
+                new UserVote(2L, new User(1L, "sdasd", "dadsda"), new Restaurant(2L, "bbb", "usdaudhas"), 1),
+                new UserVote(3L, new User(1L, "sdasd", "dadsda"), new Restaurant(3L, "ccc", "usdaudhas"), 1),
+                new UserVote(4L, new User(2L, "bbbb", "dadsda"), new Restaurant(1L, "aaaa", "usdaudhas"), 1),
+                new UserVote(5L, new User(2L, "bbbb", "dadsda"), new Restaurant(2L, "bbbb", "usdaudhas"), 1),
+                new UserVote(6L, new User(2L, "bbbb", "dadsda"), new Restaurant(3L, "cccc", "usdaudhas"), 2)
+        );
+        userVoteFixture = new UserVote();
+        userVoteFixture.setId(USER_VOTE_ID);
+        userVoteFixture.setUser(this.userFixture);
+
     }
 }

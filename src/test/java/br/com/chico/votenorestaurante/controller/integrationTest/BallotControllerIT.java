@@ -113,7 +113,7 @@ public class BallotControllerIT extends AbstractTransactionalJUnit4SpringContext
         //Execute
         this.mockMvc
                 .perform(
-                        post("/ballot/register-vote")
+                        post("/ballot/submit")
                                 .accept(MediaType.APPLICATION_JSON_VALUE)
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                                 .content(ballotBox)

@@ -10,5 +10,9 @@ describe('UserController', function () {
         $rootScope.$apply();
     });
 
+    describe('', function(){
+
+    });
+
 });
 

@@ -13,8 +13,10 @@ import java.util.List;
  * @author Francisco Almeida
  * @since 11/04/2016
  */
-@Transactional
 public interface UserVoteRepository extends JpaRepository<UserVote, Long> {
     @Query("SELECT v FROM UserVote v JOIN FETCH v.restaurant WHERE v.user = (:user)")
     List<UserVote> findByUser(@Param("user") User user);
+
+    @Query(value = "SELECT v.restaurant, sum(v.total) as total FROM UserVote v INNER JOIN v.restaurant r ON v.restaurant.id = r.id GROUP BY r.name", nativeQuery = true)
+    List<UserVote> findByTotal();
 }

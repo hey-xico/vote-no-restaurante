@@ -48,7 +48,7 @@ describe('UserService', function () {
         it('Must succeed', function(){
 
             $httpBackend
-                .when('GET', '/vote-no-restaurante/ranking/global')
+                .when('GET', '/vote-no-restaurante/ranking/total')
                 .respond(200, []);
 
             RankingService.getRankingGlobal(userFixture).then(function (data) {
@@ -60,7 +60,7 @@ describe('UserService', function () {
 
         it('reports error if server fails', function() {
             $httpBackend
-                .when('GET', '/vote-no-restaurante/ranking/global', userFixture)
+                .when('GET', '/vote-no-restaurante/ranking/total', userFixture)
                 .respond(500, {description: 'an error has occurred'});
 
             RankingService.getRankingGlobal(userFixture).catch(function (data) {

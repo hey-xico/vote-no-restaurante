@@ -19,7 +19,7 @@
         }
 
         function getRankingGlobal() {
-            return $http.get('/vote-no-restaurante/ranking/global')
+            return $http.get('/vote-no-restaurante/ranking/total')
                 .then(onComplete)
                 .catch(onError);
         }

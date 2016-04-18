@@ -1,5 +1,6 @@
 package br.com.chico.votenorestaurante.model.service;
 
+import br.com.chico.votenorestaurante.model.entity.Restaurant;
 import br.com.chico.votenorestaurante.model.entity.User;
 import br.com.chico.votenorestaurante.model.entity.UserVote;
 import br.com.chico.votenorestaurante.model.repository.UserVoteRepository;
@@ -8,7 +9,13 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 /**
  * @author Francisco Almeida
@@ -60,5 +67,10 @@ public class UserVoteServiceImpl implements UserVoteService {
     @Override
     public List<UserVote> findByUser(User user) {
         return this.repo.findByUser(user);
+    }
+
+    @Override
+    public List<UserVote> findAllSumarized() {
+        return this.repo.findByTotal();
     }
 }

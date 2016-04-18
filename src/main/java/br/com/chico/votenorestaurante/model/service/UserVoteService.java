@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface UserVoteService extends CrudService<UserVote> {
     List<UserVote> findByUser(User user);
+    List<UserVote> findAllSumarized();
 }
