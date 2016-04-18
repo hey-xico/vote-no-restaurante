@@ -17,6 +17,7 @@ module.exports = function (config) {
         files: [
             'src/main/resources/static/bower_components/angular/angular.min.js',
             'src/main/resources/static/bower_components/angular-mocks/angular-mocks.js',
+            'src/main/resources/static/bower_components/angular-ui-router/release/angular-ui-router.min.js',
             'src/main/resources/static/bower_components/bardjs/dist/bard.js',
             'src/main/resources/static/bower_components/sinon/index.js',
             'src/main/resources/static/votenorestaurante/app/*.js',

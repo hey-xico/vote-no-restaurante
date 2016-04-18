@@ -1138,7 +1138,7 @@
     font-weight: normal;
     font-style: normal;
 }
-/* Use the following CSS code if you want to use data attributes for inserting your icons */
+/* Use the following CSS code if you want to user data attributes for inserting your icons */
 [data-icon]:before {
     font-family: 'Flat-UI-Icons';
     content: attr(data-icon);
@@ -1151,7 +1151,7 @@
 /* Use the following CSS code if you want to have a class per icon */
 /*
 Instead of a list of all class selectors,
-you can use the generic selector below, but it's slower:
+you can user the generic selector below, but it's slower:
 [class*="fui-"] {
 */
 .fui-triangle-up,
@@ -10076,7 +10076,7 @@ figure.effect-lily:hover p {
     font-style: normal;
 }
 
-/* Use the following CSS code if you want to use data attributes for inserting your icons */
+/* Use the following CSS code if you want to user data attributes for inserting your icons */
 [data-icon]:before {
     font-family: 'linecons';
     content: attr(data-icon);

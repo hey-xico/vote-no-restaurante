@@ -7,6 +7,7 @@
 
     <!-- Loading Bootstrap -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="bower_components/toastr/toastr.css" rel="stylesheet">
 
     <link href="votenorestaurante/css/style.css" rel="stylesheet">
 
@@ -14,111 +15,49 @@
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <style type="text/css"></style>
 </head>
-<body ng-controller="BallotController as vm">
+<body>
 
 <div id="page" class="page">
+    <header class="item header margin-top-0 header10" id="header10">
 
-    <div class="item team" id="team2">
+        <div class="wrapper">
 
-        <div class="container">
+            <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
 
-            <div class="row margin-bottom-40">
+                <div class="container">
 
-                <div class="col-md-12">
+                    <div id="navbar-collapse-02" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active propClone"><a href="#">Home</a></li>
+                            <li class="propClone"><a href="#">Work</a></li>
+                            <li class="propClone"><a href="#">Blog</a></li>
+                            <li class="propClone"><a href="#">Contact</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
 
-                    <p class="lead text-center editContent"
-                       style="color: rgb(52, 73, 94); font-size: 30.006px; background-color: rgb(255, 255, 255);">
-                        {{vm.title}}
-                    </p>
-                    <p class="lead text-center editContent"
-                       style="color: rgb(52, 73, 94); font-size: 20.006px; background-color: rgb(255, 255, 255);">
-                        {{vm.subtitle}}
-                    </p>
-                    <p class="lead text-center editContent"
-                       style="color: rgb(52, 73, 94); font-size: 10.006px; background-color: rgb(255, 255, 255);">
-                        {{vm.slugline}}
-                    </p>
+                </div><!-- /.container -->
 
-                </div><!-- /.col-md-12 -->
+            </nav>
 
-            </div><!-- /.row -->
+        </div><!-- /.wrapper -->
 
-            <div class="row margin-bottom-20" ng-show="!vm.registryUser">
+    </header><!-- /.item -->
 
-                <div class="col-md-8 col-md-offset-2">
-
-                    <div class="row">
-
-                        <div class="col-md-6 narrow" ng-repeat="option in vm.pair">
-
-                            <div class="text-center fixed-body">
-
-                                <button type="button" class="btn btn-success btn-xs" ng-click="vm.getNextPair(option)">
-                                    Vote
-                                </button>
-
-                                <img src="http://localhost:8080/vote-no-restaurante/votenorestaurante/{{option.pathImage}}"
-                                     class="img-rounded teamImage" alt="">
-
-                            </div>
-                            <div class="text-center">
-                                <p class="editContent">
-                                    {{option.name}}
-                                </p>
-
-                            </div>
-
-                        </div><!-- /.col-md-6 -->
+    <div ui-view></div>
 
 
-                    </div><!-- /.row -->
-
-                </div><!-- /.col-md-8 -->
-
-            </div><!-- /.row -->
-
-            <div class="row margin-bottom-20" ng-show="vm.registryUser">
-                <div class="form-container text-center">
-                    <form class="forms" name="userForm" ng-submit="vm.submitForm(userForm)" novalidate>
-                        <div class="row">
-                            <div class="col-sm-offset-2 col-sm-4">
-                                <div class="form-group"
-                                     ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
-                                    <input type="text" name="name" value="" ng-minlength="3" ng-model="vm.user.name"
-                                           placeholder="Nome" class="form-control" required>
-                                    <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">
-                                        Precisamos do seu nome :).</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group"
-                                     ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
-                                    <input type="email" name="email" value=""
-                                           ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
-                                           ng-model="vm.user.email" placeholder="Email" class="form-control" required>
-                                    <p ng-show="userForm.email.$invalid && !userForm.email.$pristine"
-                                       class="help-block">Precisamso do seu e-mail, tambem!</p>
-
-                                </div>
-                            </div>
-                        </div><!-- /.row -->
-                        <div class="form-group">
-                            <button class="btn btn-primary" ng-disabled="userForm.$invalid">Salvar</button>
-                        </div>
-                    </form>
-                </div><!-- /.form-container -->
-
-            </div><!-- ./row-->
-        </div><!-- /.container -->
-
-    </div><!-- /.item --></div><!-- /#page -->
-<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script type="text/javascript" src="votenorestaurante/app/app.js"></script>
-<script type="text/javascript" src="votenorestaurante/app/core/core.module.js"></script>
-<script type="text/javascript" src="votenorestaurante/app/core/ballotservice.js"></script>
-<script type="text/javascript" src="votenorestaurante/app/core/userservice.js"></script>
-<script type="text/javascript" src="votenorestaurante/app/ballot/ballot.module.js"></script>
-<script type="text/javascript" src="votenorestaurante/app/ballot/ballot.controller.js"></script>
-<script type="text/javascript" src="votenorestaurante/app/ballot/Ballot.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/toastr/toastr.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/app.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/core/core.module.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/core/core.route.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/core/ballotservice.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/core/userservice.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/ballot/ballot.module.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/ballot/ballot.controller.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/ballot/Ballot.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/user/user.module.js"></script>
+    <script type="text/javascript" src="votenorestaurante/app/user/user.controller.js"></script>
 </body>
 </html>

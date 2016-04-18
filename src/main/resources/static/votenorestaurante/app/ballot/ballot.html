@@ -1,0 +1,86 @@
+<div class="item team" id="team2">
+
+    <div class="container">
+
+        <div class="row margin-bottom-40">
+
+            <div class="col-md-12">
+
+                <p class="lead text-center editContent"
+                   style="color: rgb(52, 73, 94); font-size: 30.006px; background-color: rgb(255, 255, 255);">
+                    {{vm.title}}
+                </p>
+
+            </div><!-- /.col-md-12 -->
+
+        </div><!-- /.row -->
+
+        <div class="row margin-bottom-20" ng-show="!vm.registryUser">
+
+            <div class="col-md-8 col-md-offset-2">
+
+                <div class="row">
+
+                    <div class="col-md-6 narrow" ng-repeat="option in vm.pair">
+
+                        <div class="text-center fixed-body">
+
+                            <button type="button" class="btn btn-success btn-xs" ng-click="vm.getNextPair(option)">
+                                Vote
+                            </button>
+
+                            <img src="http://localhost:8080/vote-no-restaurante/votenorestaurante/{{option.pathImage}}"
+                                 class="img-rounded teamImage" alt="">
+
+                        </div>
+                        <div class="text-center">
+                            <p class="editContent">
+                                {{option.name}}
+                            </p>
+
+                        </div>
+
+                    </div><!-- /.col-md-6 -->
+
+
+                </div><!-- /.row -->
+
+            </div><!-- /.col-md-8 -->
+
+        </div><!-- /.row -->
+
+        <div class="row margin-bottom-20" ng-show="vm.registryUser">
+            <div class="form-container text-center">
+                <form class="forms" name="userForm" ng-submit="vm.submitForm(userForm)" novalidate>
+                    <div class="row">
+                        <div class="col-sm-offset-2 col-sm-4">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+                                <input type="text" name="name" value="" ng-minlength="3" ng-model="vm.user.name"
+                                       placeholder="Nome" class="form-control" required>
+                                <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">
+                                    Precisamos do seu nome :).</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                                <input type="email" name="email" value=""
+                                       ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                                       ng-model="vm.user.email" placeholder="Email" class="form-control" required>
+                                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine"
+                                   class="help-block">Precisamso do seu e-mail, tambem!</p>
+
+                            </div>
+                        </div>
+                    </div><!-- /.row -->
+                    <div class="form-group">
+                        <button class="btn btn-primary" ng-disabled="userForm.$invalid">Salvar</button>
+                    </div>
+                </form>
+            </div><!-- /.form-container -->
+
+        </div><!-- ./row-->
+    </div><!-- /.container -->
+
+</div><!-- /.item --></div><!-- /#page -->

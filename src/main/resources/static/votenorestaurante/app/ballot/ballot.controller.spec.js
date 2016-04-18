@@ -44,12 +44,12 @@ describe('BallotController', function () {
         "userVotes": []
     };
 
-    beforeEach(function() {
+    beforeEach(function () {
         bard.appModule('app.ballot');
         bard.inject('$controller', '$q', '$rootScope', 'BallotService', 'UserService');
     });
 
-    beforeEach(function() {
+    beforeEach(function () {
         sinon.stub(BallotService, 'getCombinations').returns($q.when(combinationFixture));
         sinon.stub(BallotService, 'submitBallot').returns($q.when(ballotItemFixture));
         sinon.stub(UserService, 'save').returns($q.when(userFixture));
@@ -58,13 +58,13 @@ describe('BallotController', function () {
         $rootScope.$apply();
     });
 
-    it('Services must be injected', function(){
+    it('Services must be injected', function () {
         expect(BallotService).to.exist;
         expect(UserService).to.exist;
     });
 
 
-    describe('After Initialized', function() {
+    describe('After Initialized', function () {
         it('The controller must to call the service and retrieve the data', function () {
             expect(BallotService.getCombinations()).to.have.been.call;
             expect(BallotController.combinations).to.have.length.above(0);
@@ -142,147 +142,36 @@ describe('BallotController', function () {
             expect(BallotController.registryUser).to.equal(false);
         });
 
-        it('When the combinations finish, the nextfunction must set the User registry as true', function () {
+
+    });
+
+    describe('After consume the combinations', function () {
+
+        beforeEach(function () {
+            bard.inject(this, '$state');
+            $state.go =
+                function (state) {
+                    return state;
+                };
+            sinon.spy($state, 'go');
+
+        });
+        it('Should registry the ballot box at the service', function () {
+            expect(BallotService.getBallot()).to.be.undefined;
+            expect(BallotService.storeBallot(ballotItemFixture)).to.be.undefined;
+            expect(BallotService.getBallot()).to.be.equal(ballotItemFixture);
+        });
+
+        it('Redirect to user state', function () {
+
             BallotController.pairindex = 5;
-
             var combinations = {length: 5};
-
             BallotController.setNext(combinations);
 
-            expect(BallotController.registryUser).to.equal(true);
+            expect($state.go).to.have.been.calledWith('user');
         });
 
     });
 
-  /*
-
-
-
-
-
-
-    it('Given a valid user and email, must to submit to the API', function () {
-
-        var user = {
-            name: 'Frank Underwood',
-            email: 'fu@wh.com'
-        };
-
-        BallotController.submitUser(user);
-
-        expect(UserService.save).toHaveBeenCalled();
-        expect(UserService.save.calls.count()).toBe(1);
-
-        deferred.resolve(user); // Resolve the promise.
-        scope.$digest();
-
-        expect(BallotController.savedUser).toBeDefined();
-        expect(BallotController.savedUser).toBe(user);
-    });
-
-
-    it('After successfully submit a User, must to call the sendBallot methos', function () {
-
-        var user = {
-            name: 'Frank Underwood',
-            email: 'fu@wh.com'
-        };
-
-        BallotController.submitUser(user);
-
-        expect(UserService.save).toHaveBeenCalled();
-        expect(UserService.save.calls.count()).toBe(1);
-
-        deferred.resolve(user); // Resolve the promise.
-        scope.$digest();
-
-        //Call the submitBallot service
-        expect(BallotService.submitBallot).toHaveBeenCalled();
-        expect(BallotService.submitBallot.calls.count()).toBe(1)
-
-        expect(BallotController.savedUser).toBeDefined();
-        expect(BallotController.savedUser).toBe(user);
-    });
-
-    it('To submit a ballot, must to pass a user and the ballots of that session.', function () {
-        var user = {
-            id: 1,
-            name: 'Frank Underwood',
-            email: 'fu@wh.com'
-        };
-        var ballotBox = {
-            user_id: 1,
-            ballot: [
-                {
-                    restaurant_id: 1,
-                    total: 2
-                },
-                {
-                    restaurant_id: 2,
-                    total: 3
-                },
-                {
-                    restaurant_id: 3,
-                    total: 1
-                },
-                {
-                    restaurant_id: 4,
-                    total: 1
-                },
-                {
-                    restaurant_id: 5,
-                    total: 3
-                }
-            ]
-        }
-
-        BallotController.sendBallot(user, ballotBox);
-
-        expect(BallotController.ballotBoxOfUser.user_id).toBe(user.id);
-        expect(BallotController.ballotBoxOfUser.ballotBox).toBe(ballotBox);
-
-    });
-
-    it('After save the user, must submit the ballot box', function () {
-        var user = {
-            id: 1,
-            name: 'Frank Underwood',
-            email: 'fu@wh.com'
-        };
-        var ballotBox = [
-                {
-                    restaurant_id: 1,
-                    total: 2
-                },
-                {
-                    restaurant_id: 2,
-                    total: 3
-                },
-                {
-                    restaurant_id: 3,
-                    total: 1
-                },
-                {
-                    restaurant_id: 4,
-                    total: 1
-                },
-                {
-                    restaurant_id: 5,
-                    total: 3
-                }
-            ];
-
-        BallotController.sendBallot(user, ballotBox);
-
-        expect(BallotService.submitBallot).toHaveBeenCalled();
-        expect(BallotService.submitBallot.calls.count()).toBe(1);
-
-        deferred.resolve(ballotBox); // Resolve the promise.
-        scope.$digest();
-
-        expect(BallotController.successBallotSubmit).toBe('Voto registrado com sucesso');
-
-
-    });*/
 });
 

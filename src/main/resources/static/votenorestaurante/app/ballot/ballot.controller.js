@@ -3,9 +3,9 @@
         .module('app.ballot')
         .controller('BallotController', BallotController);
 
-    BallotController.$inject = ['BallotService', 'UserService'];
+    BallotController.$inject = ['BallotService', 'UserService', '$state'];
 
-    function BallotController(BallotService, UserService) {
+    function BallotController(BallotService, UserService, $state) {
         var vm = this;
 
         vm.pair = {};
@@ -53,10 +53,8 @@
             if (vm.pairindex < combinations.length) {
                 return combinations[vm.pairindex];
             } else {
-                vm.title = 'Obrigado!';
-                vm.subtitle = 'Para finalizar, informe seu nome e um e-mail';
-                vm.slugline = 'Prometemos não enviar spam';
-                vm.registryUser = true;
+                BallotService.storeBallot(vm.ballotBox);
+                $state.go('user');
             }
         };
 
@@ -66,37 +64,5 @@
                     return i;
             }
         }
-
-        // function to submit the form after all validation has occurred
-        vm.submitForm = function (isValid) {
-            // check to make sure the form is completely valid
-            if (isValid) {
-                vm.submitUser(vm.user);
-            }
-        };
-
-        vm.submitUser = function (user) {
-            UserService.save(user).then(
-                function (data) {
-                    vm.sendBallot(data, vm.ballotBox);
-                    vm.savedUser = data;
-                }
-            );
-        };
-
-        vm.sendBallot = function (user, ballotBox) {
-
-            vm.ballotBoxOfUser = {
-                userId: user.id,
-                ballotBoxList: ballotBox
-            };
-
-            BallotService.submitBallot(vm.ballotBoxOfUser).then(
-                function (data) {
-                    vm.successBallotSubmit = 'Voto registrado com sucesso';
-                }
-            );
-        }
-
     }
 })();

@@ -6,9 +6,14 @@
 
     BallotService.$inject = ['$http', '$log', '$q'];
     function BallotService($http, $log, $q) {
+
+        var storedBallot;
+
         return {
             getCombinations: getCombinations,
-            submitBallot: submitBallot
+            submitBallot: submitBallot,
+            storeBallot: storeBallot,
+            getBallot: getBallot
         };
 
         function getCombinations() {
@@ -24,6 +29,7 @@
                 .catch(onError);
 
         }
+
         function onComplete(response) {
             return response.data;
         }
@@ -31,6 +37,14 @@
         function onError(error) {
             $log.error('XHR Failed for combinations.' + error.data);
             return $q.reject(error.data.description)
+        }
+
+        function storeBallot(ballot) {
+            storedBallot = ballot;
+        }
+
+        function getBallot() {
+            return storedBallot;
         }
     }
 })();
