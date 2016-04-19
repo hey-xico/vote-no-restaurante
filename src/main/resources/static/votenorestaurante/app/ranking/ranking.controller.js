@@ -6,11 +6,11 @@
     RankingController.$inject = ['$stateParams', 'RankingService'];
     function RankingController($stateParams, RankingService) {
         var vm = this;
-        vm.title = 'Veja a classificação';
 
         activate();
 
         function activate() {
+            vm.title = $stateParams.id ? 'Obrigado(a)' : 'Ranking Geral';
             loadUserRanking($stateParams.id);
             loadOverallRanking();
         }

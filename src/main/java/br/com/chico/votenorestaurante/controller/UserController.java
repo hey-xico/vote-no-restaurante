@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 /**
  * @author Francisco Almeida
  * @since 14/04/2016
@@ -30,10 +28,4 @@ public class UserController {
         return new ResponseEntity<>(this.userService.save(user), HttpStatus.OK);
     }
 
-    @RequestMapping(
-            value = "find-all",
-            method = RequestMethod.GET)
-    public ResponseEntity<List<User>> findAll() {
-        return new ResponseEntity<>(this.userService.findAll(), HttpStatus.OK);
-    }
 }

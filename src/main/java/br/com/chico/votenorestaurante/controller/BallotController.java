@@ -48,6 +48,7 @@ public class BallotController {
         Collections.shuffle(restaurantPairs, new Random(System.nanoTime()));
         return restaurantPairs;
     }
+
     @RequestMapping(
             value = "submit",
             method = RequestMethod.POST)
