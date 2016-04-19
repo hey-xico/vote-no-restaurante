@@ -3,11 +3,12 @@
         .module('app.ballot')
         .controller('BallotController', BallotController);
 
-    BallotController.$inject = ['BallotService', 'UserService', '$state'];
+    BallotController.$inject = ['BallotService', 'UserService', '$state', '$stateParams'];
 
-    function BallotController(BallotService, UserService, $state) {
+    function BallotController(BallotService, UserService, $state, $stateParams) {
         var vm = this;
 
+        console.log($stateParams)
         vm.pair = {};
         vm.combinations = [];
         vm.ballotBox = [];

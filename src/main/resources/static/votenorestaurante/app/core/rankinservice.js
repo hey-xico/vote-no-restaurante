@@ -13,7 +13,7 @@
         };
 
         function getUserRanking(userId) {
-            return $http.get('/vote-no-restaurante/ranking/user', userId)
+            return $http.get('/vote-no-restaurante/ranking/user/'+userId)
                 .then(onComplete)
                 .catch(onError);
         }
