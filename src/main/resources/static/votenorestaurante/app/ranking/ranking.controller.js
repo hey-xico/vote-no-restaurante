@@ -6,7 +6,7 @@
     RankingController.$inject = ['$stateParams', 'RankingService'];
     function RankingController($stateParams, RankingService) {
         var vm = this;
-
+        var descriptionMessage = "Veja o resumo do seu voto e da votação geral";
         activate();
 
         function activate() {

@@ -8,7 +8,6 @@
     function BallotController(BallotService, UserService, $state, $stateParams) {
         var vm = this;
 
-        console.log($stateParams)
         vm.pair = {};
         vm.combinations = [];
         vm.ballotBox = [];
@@ -27,7 +26,7 @@
 
         function getCombinations() {
             return BallotService.getCombinations().then(function (data) {
-                vm.combinations = data;
+                vm.combinations = _.shuffle(data);
                 vm.getNextPair();
             });
         }
@@ -52,7 +51,7 @@
 
         vm.setNext = function (combinations) {
             if (vm.pairindex < combinations.length) {
-                return combinations[vm.pairindex];
+                return _.shuffle(combinations[vm.pairindex]);
             } else {
                 BallotService.storeBallot(vm.ballotBox);
                 $state.go('user');
@@ -65,5 +64,6 @@
                     return i;
             }
         }
+
     }
 })();

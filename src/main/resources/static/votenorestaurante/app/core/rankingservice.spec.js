@@ -1,4 +1,4 @@
-describe('UserService', function () {
+describe('RankingService', function () {
 
     var userFixture = {
         name: 'Frank Underwood',
@@ -19,7 +19,7 @@ describe('UserService', function () {
         it('Must succeed', function(){
 
             $httpBackend
-                .when('GET', '/vote-no-restaurante/ranking/user', 1)
+                .when('GET', '/vote-no-restaurante/ranking/user/1')
                 .respond(200, []);
 
             RankingService.getUserRanking(1).then(function (data) {
@@ -31,7 +31,7 @@ describe('UserService', function () {
 
         it('reports error if server fails', function() {
             $httpBackend
-                .when('GET', '/vote-no-restaurante/ranking/user', 1)
+                .when('GET', '/vote-no-restaurante/ranking/user/1')
                 .respond(500, {description: 'an error has occurred'});
 
             RankingService.getUserRanking(1).catch(function (data) {

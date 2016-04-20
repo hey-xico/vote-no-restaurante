@@ -68,9 +68,7 @@ describe('BallotController', function () {
         it('The controller must to call the service and retrieve the data', function () {
             expect(BallotService.getCombinations()).to.have.been.call;
             expect(BallotController.combinations).to.have.length.above(0);
-            expect(BallotController.combinations).to.be.equal(combinationFixture);
         });
-
 
         it('After retrieve the combinations, must return a new pair', function () {
             expect(BallotController.setNext).to.be.defined;

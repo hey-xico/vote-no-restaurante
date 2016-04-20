@@ -20,6 +20,7 @@ module.exports = function (config) {
             'src/main/resources/static/bower_components/angular-ui-router/release/angular-ui-router.min.js',
             'src/main/resources/static/bower_components/bardjs/dist/bard.js',
             'src/main/resources/static/bower_components/sinon/index.js',
+            'src/main/resources/static/bower_components/lodash/dist/lodash.js',
             'src/main/resources/static/votenorestaurante/app/*.js',
             'src/main/resources/static/votenorestaurante/app/**/*.module.js',
             'src/main/resources/static/votenorestaurante/app/**/*.controller.js',

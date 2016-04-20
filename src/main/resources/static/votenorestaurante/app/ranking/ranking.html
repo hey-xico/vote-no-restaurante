@@ -8,7 +8,7 @@
 
                 <p class="lead text-center editContent"
                    style="color: rgb(52, 73, 94); font-size: 30.006px; background-color: rgb(255, 255, 255);">
-                    {{vm.title}} {{vm.userRankingData[0].user.name}}
+                    {{vm.title}}, {{vm.userRankingData[0].user.name}}
                 </p>
 
             </div><!-- /.col-md-12 -->
@@ -20,9 +20,22 @@
 
             <div class="container">
 
-                <div class="row">
+                <div ng-class="vm.userRankingData.length > 0  ? 'row' : 'hide-something'">
+                    <div class="col-md-6">
 
-                    <div ng-class="vm.userRankingData.length > 0  ? 'col-md-6' : 'hide-something'">
+                        <div class="editContent">
+                            <h3>Obrigado pelo seu voto</h3>
+
+                            <p>
+                                Veja seus restaurantes favoritos
+                            </p>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="col-md-6">
 
                         <div class="tableWrapper">
                             <table class="table table-striped table-hover text-center">
@@ -42,9 +55,20 @@
                         </div><!-- /.tableWrapper -->
 
                     </div><!-- ./col-md-8 -->
+                </div>
+                <div class="row">
 
 
-                    <div ng-class="vm.userRankingData.length > 0 ? 'col-md-6': 'col-sm-offset-3 col-sm-6'">
+                    <div class="col-md-6">
+                        <div class="editContent">
+                            <h3>Ranking Geral</h3>
+
+                            <p>
+                                Veja os restaurantes mais votados
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
 
                         <div class="tableWrapper">
                             <table class="table table-striped table-hover text-center">
@@ -64,7 +88,6 @@
                         </div><!-- /.tableWrapper -->
 
                     </div><!-- ./col-md-8 -->
-
                 </div><!-- /.row -->
 
             </div><!-- /.container -->

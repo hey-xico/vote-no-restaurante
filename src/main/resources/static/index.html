@@ -6,46 +6,54 @@
     <!--pageMeta-->
 
     <!-- Loading Bootstrap -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!--
     <link href="bower_components/toastr/toastr.css" rel="stylesheet">
 
-    <link href="votenorestaurante/css/style.css" rel="stylesheet">
-
-    <link href="votenorestaurante/css/style.complete.css" rel="stylesheet">
+    <link href="votenorestaurante/css/style.css" rel="stylesheet">-->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="votenorestaurante/css/tidy.css" rel="stylesheet">
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <style type="text/css"></style>
 </head>
 <body>
 
 <div id="page" class="page">
-    <header class="item header margin-top-0 header10" id="header10">
+
+    <header class="item header margin-top-0 dark" id="header7">
 
         <div class="wrapper">
 
-            <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
+            <div class="container">
 
-                <div class="container">
+                <nav role="navigation" class="navbar plain margin-top-10">
+
+                    <div class="navbar-header">
+                        <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                    </div>
 
                     <div id="navbar-collapse-02" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active propClone"><a ui-sref="ballot">Vote</a></li>
+                            <li class="propClone"><a ui-sref="ballot">Vote</a></li>
                             <li class="propClone"><a ui-sref="ranking">Ranking</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
 
-                </div><!-- /.container -->
+                </nav>
 
-            </nav>
+
+            </div><!-- /.container -->
 
         </div><!-- /.wrapper -->
-
-    </header><!-- /.item -->
     <div ui-view></div>
 </div>
 
 <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="bower_components/toastr/toastr.js"></script>
+<script type="text/javascript" src="bower_components/lodash/dist/lodash.js"></script>
 <script type="text/javascript" src="votenorestaurante/app/app.js"></script>
 <script type="text/javascript" src="votenorestaurante/app/core/core.module.js"></script>
 <script type="text/javascript" src="votenorestaurante/app/core/core.route.js"></script>
